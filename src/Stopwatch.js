@@ -20,13 +20,20 @@ class Stopwatch extends React.Component {
     }
 
     handleLogTime(e) {
-        this.setState('log');
+        console.log('log');
     }
 
     render() {
+        let firstButton;
+        if (!this.state.running) {
+            firstButton = <button onClick={this.handleStart}>Start</button>;
+        } else {
+            firstButton = <button onClick={this.handleLogTime}>Log Time</button>
+        }
+
         return (
             <div id="buttons">
-                <button onClick={this.handleStart}>Start</button>
+                {firstButton}
                 <button onClick={this.handleStop}>Stop</button>
             </div>
         );
