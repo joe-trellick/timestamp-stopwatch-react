@@ -6,12 +6,16 @@ class Stopwatch extends React.Component {
         this.handleStart = this.handleStart.bind(this);
         this.handleStop = this.handleStop.bind(this);
         this.handleLogTime = this.handleLogTime.bind(this);
-        this.state = {running: false, log: ''};
+        this.state = {running: false, log: 'brip'};
+    }
+
+    createLogString(note) {
+        return `${new Date().toISOString()} ${note}\n`;
     }
 
     handleStart(e) {
         console.log('start');
-        this.setState({running: true});
+        this.setState({running: true, log: this.createLogString('start')});
     }
 
     handleStop(e) {
@@ -21,6 +25,10 @@ class Stopwatch extends React.Component {
 
     handleLogTime(e) {
         console.log('log');
+        let logString = this.createLogString('log');
+        this.setState((state, props) => ({
+            log: state.log += logString
+        }));
     }
 
     render() {
@@ -32,9 +40,12 @@ class Stopwatch extends React.Component {
         }
 
         return (
-            <div id="buttons">
-                {firstButton}
-                <button onClick={this.handleStop}>Stop</button>
+            <div id="stopwatch">
+                <div id="buttons">
+                    {firstButton}
+                    <button onClick={this.handleStop}>Stop</button>
+                </div>
+                <textarea rows="5" cols="50" value={this.state.log} />
             </div>
         );
     }
