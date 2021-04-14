@@ -1,4 +1,5 @@
 import React from 'react';
+import './Stopwatch.css';
 
 class Stopwatch extends React.Component {
     constructor(props) {
@@ -6,7 +7,7 @@ class Stopwatch extends React.Component {
         this.handleStart = this.handleStart.bind(this);
         this.handleStop = this.handleStop.bind(this);
         this.handleLogTime = this.handleLogTime.bind(this);
-        this.state = {running: false, log: '(hit start)'};
+        this.state = {running: false, log: '(hit start)', logEntries:[]};
     }
 
     createLogString(note) {
@@ -32,13 +33,14 @@ class Stopwatch extends React.Component {
     }
 
     clearLog() {
-        this.setState({log: ''});
+        this.setState({log: '', logEntries: []});
     }
 
     addLogEntry(note) {
         let logString = this.createLogString(note);
         this.setState((state, props) => ({
-            log: state.log += logString
+            log: state.log += logString,
+            logEntries: state.logEntries.concat([{timestamp: new Date(), note: note}])
         }));
     }
 
@@ -57,6 +59,15 @@ class Stopwatch extends React.Component {
                     <button onClick={this.handleStop}>Stop</button>
                 </div>
                 <textarea rows="5" cols="50" value={this.state.log} />
+                {this.state.logEntries.length > 0 &&
+                    <div className="log">
+                        <ul>
+                            {this.state.logEntries.map(entry => (
+                                <li key={entry.timestamp.toISOString()}>{`${entry.timestamp.toISOString()} ${entry.note}`}</li>
+                            ))}
+                        </ul>
+                    </div>
+                }
             </div>
         );
     }
