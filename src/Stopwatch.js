@@ -7,6 +7,7 @@ class Stopwatch extends React.Component {
         this.handleStart = this.handleStart.bind(this);
         this.handleStop = this.handleStop.bind(this);
         this.handleLogTime = this.handleLogTime.bind(this);
+        this.handleCopy = this.handleCopy.bind(this);
         this.state = {running: false, log: '(hit start)', logEntries:[]};
     }
 
@@ -32,6 +33,12 @@ class Stopwatch extends React.Component {
         this.addLogEntry('log');
     }
 
+    handleCopy(e) {
+        this.setState((state, props) => ({
+            log: state.logEntries.map(entry => `${entry.timestamp.toISOString()} ${entry.note}`).join('\n')
+        }), () => console.log(`TODO, copy to clipboard:\n${this.state.log}`));
+    }
+
     clearLog() {
         this.setState({log: '', logEntries: []});
     }
@@ -39,7 +46,6 @@ class Stopwatch extends React.Component {
     addLogEntry(note) {
         let logString = this.createLogString(note);
         this.setState((state, props) => ({
-            log: state.log += logString,
             logEntries: state.logEntries.concat([{timestamp: new Date(), note: note}])
         }));
     }
@@ -57,8 +63,9 @@ class Stopwatch extends React.Component {
                 <div id="buttons">
                     {firstButton}
                     <button onClick={this.handleStop}>Stop</button>
+                    <button onClick={this.handleCopy}>Copy</button>
                 </div>
-                <textarea rows="5" cols="50" value={this.state.log} />
+                <textarea rows="5" cols="50" value={this.state.log} readOnly/>
                 {this.state.logEntries.length > 0 &&
                     <div className="log">
                         <ul>
