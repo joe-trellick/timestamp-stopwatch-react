@@ -14,10 +14,6 @@ class Stopwatch extends React.Component {
         this.state = {running: false, log: '(hit start)', logEntries:[]};
     }
 
-    createLogString(note) {
-        return `${new Date().toISOString()} ${note}\n`;
-    }
-
     handleStart(e) {
         console.log('start');
         this.clearLog();
@@ -51,7 +47,6 @@ class Stopwatch extends React.Component {
     }
 
     addLogEntry(note) {
-        let logString = this.createLogString(note);
         this.setState((state, props) => ({
             logEntries: state.logEntries.concat([{timestamp: new Date(), note: note}])
         }));
