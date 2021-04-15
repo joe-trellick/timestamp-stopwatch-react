@@ -8,6 +8,9 @@ class Stopwatch extends React.Component {
         this.handleStop = this.handleStop.bind(this);
         this.handleLogTime = this.handleLogTime.bind(this);
         this.handleCopy = this.handleCopy.bind(this);
+
+        this.copyTextAreaRef = React.createRef();
+
         this.state = {running: false, log: '(hit start)', logEntries:[]};
     }
 
@@ -36,7 +39,11 @@ class Stopwatch extends React.Component {
     handleCopy(e) {
         this.setState((state, props) => ({
             log: state.logEntries.map(entry => `${entry.timestamp.toISOString()} ${entry.note}`).join('\n')
-        }), () => console.log(`TODO, copy to clipboard:\n${this.state.log}`));
+        }), () => {
+            this.copyTextAreaRef.current.select();
+            document.execCommand('copy');
+            console.log(`Copied to clipboard:\n${this.state.log}`);
+        });
     }
 
     clearLog() {
@@ -65,7 +72,7 @@ class Stopwatch extends React.Component {
                     <button onClick={this.handleStop}>Stop</button>
                     <button onClick={this.handleCopy}>Copy</button>
                 </div>
-                <textarea rows="5" cols="50" value={this.state.log} readOnly/>
+                <textarea rows="5" cols="50" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
                 {this.state.logEntries.length > 0 &&
                     <div className="log">
                         <ul>
