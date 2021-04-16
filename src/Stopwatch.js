@@ -50,6 +50,16 @@ class Stopwatch extends React.Component {
         e.target.select();
     }
 
+    pad(number, size) {
+        let s = String(number);
+        while (s.length < (size || 2)) {s = "0" + s;}
+        return s;
+    }
+
+    formatTimestamp(date) {
+        return `${date.getHours()}:${this.pad(date.getMinutes())}:${this.pad(date.getSeconds())}.${this.pad(date.getMilliseconds(), 3)}`
+    }
+
     addLogEntry(note) {
         this.setState((state, props) => ({
             logEntries: state.logEntries.concat([{timestamp: new Date(), note: note}])
@@ -77,7 +87,7 @@ class Stopwatch extends React.Component {
                         <ul>
                             {this.state.logEntries.map((entry, index) => (
                                 <li key={entry.timestamp.toISOString()}>
-                                    <span class="timestamp">{entry.timestamp.toLocaleTimeString()} </span>
+                                    <span class="timestamp">{this.formatTimestamp(entry.timestamp)} </span>
                                     <input type="text" value={entry.note}
                                         onClick={this.selectAllText} onChange={ e => {
                                         let logEntries = this.state.logEntries;
