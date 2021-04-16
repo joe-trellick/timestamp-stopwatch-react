@@ -71,9 +71,14 @@ class Stopwatch extends React.Component {
                 {this.state.logEntries.length > 0 &&
                     <div className="log">
                         <ul>
-                            {this.state.logEntries.map(entry => (
+                            {this.state.logEntries.map((entry, index) => (
                                 <li key={entry.timestamp.toISOString()}>
-                                    <span class="timestamp">{entry.timestamp.toLocaleTimeString()}</span> {entry.note}
+                                    <span class="timestamp">{entry.timestamp.toLocaleTimeString()} </span>
+                                    <input type="text" value={entry.note} onChange={ e => {
+                                        let logEntries = this.state.logEntries;
+                                        logEntries[index].note = e.target.value;
+                                        this.setState({logEntries: logEntries});
+                                    }} />
                                 </li>
                             ))}
                         </ul>
