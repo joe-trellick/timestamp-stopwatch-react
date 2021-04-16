@@ -72,7 +72,9 @@ class Stopwatch extends React.Component {
                     <div className="log">
                         <ul>
                             {this.state.logEntries.map(entry => (
-                                <li key={entry.timestamp.toISOString()}>{`${entry.timestamp.toISOString()} ${entry.note}`}</li>
+                                <li key={entry.timestamp.toISOString()}>
+                                    <span class="timestamp">{entry.timestamp.toLocaleTimeString()}</span> {entry.note}
+                                </li>
                             ))}
                         </ul>
                     </div>
