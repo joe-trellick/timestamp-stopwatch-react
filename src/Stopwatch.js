@@ -1,5 +1,6 @@
 import React from 'react';
 import './Stopwatch.css';
+import CopyIcon from './Copy.png';
 
 class Stopwatch extends React.Component {
     constructor(props) {
@@ -79,7 +80,7 @@ class Stopwatch extends React.Component {
                 <div id="buttons">
                     {firstButton}
                     <button onClick={this.handleStop}>Stop</button>
-                    <button onClick={this.handleCopy}>Copy</button>
+                    <button onClick={this.handleCopy}><img src={CopyIcon} alt="Copy"/></button>
                 </div>
                 <textarea rows="5" cols="50" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
                 {this.state.logEntries.length > 0 &&
