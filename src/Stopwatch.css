@@ -1,9 +1,19 @@
 .log {
     color: black;
     text-align: left;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.logentry {
+    list-style-type: none;
 }
 
 .timestamp {
     color: gray;
+}
+
+.loginput {
+    font-size: 18px;
+    border-style: hidden;
+    outline: none;
 }
