@@ -29,8 +29,8 @@ class Stopwatch extends React.Component {
     }
 
     handleLogTime(e) {
-        console.log('log');
-        this.addLogEntry('log');
+        console.log('timestamp');
+        this.addLogEntry('timestamp');
     }
 
     handleCopy(e) {
@@ -70,19 +70,19 @@ class Stopwatch extends React.Component {
     render() {
         let firstButton;
         if (!this.state.running) {
-            firstButton = <button onClick={this.handleStart}>Start</button>;
+            firstButton = <button onClick={this.handleStart}><span className="label">Start</span></button>;
         } else {
-            firstButton = <button onClick={this.handleLogTime}>Log Time</button>
+            firstButton = <button onClick={this.handleLogTime}><span className="label">Timestamp</span></button>
         }
 
         return (
             <div id="stopwatch">
                 <div id="buttons">
                     {firstButton}
-                    <button onClick={this.handleStop}>Stop</button>
-                    <button onClick={this.handleCopy}><img src={CopyIcon} alt="Copy"/></button>
+                    <button onClick={this.handleStop}><span className="label">Stop</span></button>
+                    <button onClick={this.handleCopy}><img src={CopyIcon} alt=""/><span className="label">Copy Log</span></button>
                 </div>
-                <textarea rows="5" cols="50" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
+                <textarea rows="5" cols="30" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
                 {this.state.logEntries.length > 0 &&
                     <div className="log">
                         <ul>
