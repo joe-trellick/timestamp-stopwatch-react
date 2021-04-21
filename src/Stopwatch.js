@@ -79,8 +79,12 @@ class Stopwatch extends React.Component {
             <div id="stopwatch">
                 <div id="buttons">
                     {firstButton}
-                    <button onClick={this.handleStop}><span className="label">Stop</span></button>
-                    <button onClick={this.handleCopy}><img src={CopyIcon} alt=""/><span className="label">Copy Log</span></button>
+                    <button onClick={this.handleStop} disabled={!this.state.running}>
+                        <span className="label">Stop</span>
+                    </button>
+                    <button onClick={this.handleCopy}>
+                        <img src={CopyIcon} alt=""/><span className="label">Copy Log</span>
+                    </button>
                 </div>
                 <textarea rows="5" cols="30" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
                 {this.state.logEntries.length > 0 &&
