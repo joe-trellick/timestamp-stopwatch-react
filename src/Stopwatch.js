@@ -1,5 +1,9 @@
 import React from 'react';
 import './Stopwatch.css';
+
+import StartIcon from './Start.png';
+import TimestampIcon from './Timestamp.png';
+import StopIcon from './Stop.png';
 import CopyIcon from './Copy.png';
 
 class Stopwatch extends React.Component {
@@ -70,9 +74,15 @@ class Stopwatch extends React.Component {
     render() {
         let firstButton;
         if (!this.state.running) {
-            firstButton = <button onClick={this.handleStart}><span className="label">Start</span></button>;
+            firstButton = <button onClick={this.handleStart}>
+                <img src={StartIcon} alt=""/>
+                <span className="label">Start</span>
+            </button>;
         } else {
-            firstButton = <button onClick={this.handleLogTime}><span className="label">Timestamp</span></button>
+            firstButton = <button onClick={this.handleLogTime}>
+                <img src={TimestampIcon} alt=""/>
+                <span className="label">Timestamp</span>
+            </button>;
         }
 
         return (
@@ -80,10 +90,12 @@ class Stopwatch extends React.Component {
                 <div id="buttons">
                     {firstButton}
                     <button onClick={this.handleStop} disabled={!this.state.running}>
+                        <img src={StopIcon} alt=""/>
                         <span className="label">Stop</span>
                     </button>
                     <button onClick={this.handleCopy}>
-                        <img src={CopyIcon} alt=""/><span className="label">Copy Log</span>
+                        <img src={CopyIcon} alt=""/>
+                        <span className="label">Copy Log</span>
                     </button>
                 </div>
                 <textarea rows="5" cols="30" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
