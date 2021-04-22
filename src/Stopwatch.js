@@ -1,6 +1,8 @@
 import React from 'react';
 import './Stopwatch.css';
 
+import Toast from 'light-toast';
+
 import StartIcon from './Start.png';
 import TimestampIcon from './Timestamp.png';
 import StopIcon from './Stop.png';
@@ -38,6 +40,7 @@ class Stopwatch extends React.Component {
     }
 
     handleCopy(e) {
+        Toast.info('Log copied to clipboard!', 2000);
         this.setState((state, props) => ({
             log: state.logEntries.map(entry => `${entry.timestamp.toISOString()} ${entry.note}`).join('\n')
         }), () => {
