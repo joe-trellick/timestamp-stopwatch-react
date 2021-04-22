@@ -36,3 +36,7 @@
     border-style: hidden;
     outline: none;
 }
+
+#copylog {
+    display: none;
+}

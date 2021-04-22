@@ -101,7 +101,7 @@ class Stopwatch extends React.Component {
                         <span className="label">Copy Log</span>
                     </button>
                 </div>
-                <textarea rows="5" cols="30" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
+                <textarea id="copylog" rows="5" cols="30" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
                 {this.state.logEntries.length > 0 &&
                     <div className="log">
                         <ul>
