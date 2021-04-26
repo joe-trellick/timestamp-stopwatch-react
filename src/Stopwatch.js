@@ -15,6 +15,7 @@ class Stopwatch extends React.Component {
         this.handleStop = this.handleStop.bind(this);
         this.handleLogTime = this.handleLogTime.bind(this);
         this.handleCopy = this.handleCopy.bind(this);
+        this.handleShare = this.handleShare.bind(this);
 
         this.copyTextAreaRef = React.createRef();
 
@@ -47,6 +48,16 @@ class Stopwatch extends React.Component {
             this.copyTextAreaRef.current.select();
             document.execCommand('copy');
             console.log(`Copied to clipboard:\n${this.state.log}`);
+        });
+    }
+
+    handleShare(e) {
+        this.setState((state, props) => ({
+            log: state.logEntries.map(entry => `${entry.timestamp.toISOString()} ${entry.note}`).join('\n')
+        }), () => {
+            navigator.share({
+                text: this.state.log
+            });
         });
     }
 
@@ -101,7 +112,7 @@ class Stopwatch extends React.Component {
                         <span className="label">Copy Log</span>
                     </button>
                     {navigator.share &&
-                        <button onClick={this.handleCopy}>
+                        <button onClick={this.handleShare}>
                             <img src={CopyIcon} alt=""/>
                             <span className="label">Share Log</span>
                         </button>
