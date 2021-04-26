@@ -38,5 +38,7 @@
 }
 
 #copylog {
-    display: none;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
 }
