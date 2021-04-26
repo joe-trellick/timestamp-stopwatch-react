@@ -100,6 +100,12 @@ class Stopwatch extends React.Component {
                         <img src={CopyIcon} alt=""/>
                         <span className="label">Copy Log</span>
                     </button>
+                    {navigator.share &&
+                        <button onClick={this.handleCopy}>
+                            <img src={CopyIcon} alt=""/>
+                            <span className="label">Share Log</span>
+                        </button>
+                    }
                 </div>
                 <textarea id="copylog" rows="5" cols="30" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
                 {this.state.logEntries.length > 0 &&
