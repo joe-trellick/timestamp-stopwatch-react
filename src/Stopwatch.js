@@ -7,6 +7,7 @@ import StartIcon from './Start.png';
 import TimestampIcon from './Timestamp.png';
 import StopIcon from './Stop.png';
 import CopyIcon from './Copy.png';
+import ShareIcon from './Share.png';
 
 class Stopwatch extends React.Component {
     constructor(props) {
@@ -113,7 +114,7 @@ class Stopwatch extends React.Component {
                     </button>
                     {navigator.share &&
                         <button onClick={this.handleShare}>
-                            <img src={CopyIcon} alt=""/>
+                            <img src={ShareIcon} alt=""/>
                             <span className="label">Share Log</span>
                         </button>
                     }
