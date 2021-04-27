@@ -120,6 +120,21 @@ class Stopwatch extends React.Component {
                     }
                 </div>
                 <textarea id="copylog" rows="5" cols="30" value={this.state.log} ref={this.copyTextAreaRef} readOnly/>
+                {this.state.logEntries.length === 0 &&
+                    <div id="instructions">
+                        <div><b>Timestamp Stopwatch</b></div>
+                        <div id="explanation">
+                            This is a simple app for recording a set of
+                            timestamps. Each timestamp can have a custom
+                            note attached. Once finished, the entire log can
+                            be copied (or on mobile, shared).
+                            <br/><br/>
+                            To use it, tap "Start" to log the first timestamp,
+                            then "Timestamp" to keep adding more. You can
+                            change the note next to any timestamp by tapping it.
+                        </div>
+                    </div>
+                }
                 {this.state.logEntries.length > 0 &&
                     <div className="log">
                         <ul>

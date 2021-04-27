@@ -42,3 +42,17 @@
     z-index: -1;
     opacity: 0;
 }
+
+#instructions {
+    color: black;
+    padding: 10px;
+}
+
+#instructions div {
+    margin: 10px;
+}
+
+#explanation {
+    text-align: left;
+    line-height: 120%;
+}
