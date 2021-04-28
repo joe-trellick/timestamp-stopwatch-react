@@ -132,6 +132,10 @@ class Stopwatch extends React.Component {
                             To use it, tap "Start" to log the first timestamp,
                             then "Timestamp" to keep adding more. You can
                             change the note next to any timestamp by tapping it.
+                            <br/><br/>
+                            For source and more information, see <a href="https://github.com/joehughes/timestamp-stopwatch-react">Github</a>.
+                            <br/><br/>
+                            version: {this.props.version}
                         </div>
                     </div>
                 }

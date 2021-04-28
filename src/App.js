@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Stopwatch />
+        <Stopwatch version="2021-04-28" />
       </header>
     </div>
   );
