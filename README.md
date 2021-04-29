@@ -1,77 +1,46 @@
-# timestamp-stopwatch-react
+# Timestamp Stopwatch
 A simple stopwatch that records timestamps in ISO-8601 format. (Also a technology testbed.)
 
-# Getting Started with Create React App
+# Try it
+You can run it from [Arweave](https://www.arweave.org/) at address
+[WvPobhBKXmoBJAVDABgx4cZWatjZZShnw1y4Nnnf-5Q](https://arweave.net/WvPobhBKXmoBJAVDABgx4cZWatjZZShnw1y4Nnnf-5Q). If you believe Arweave's premise, this should work approximately forever.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+If my [Vercel](https://vercel.com/) account is still active, you can also try it at https://timestamp-stopwatch-react.vercel.app/
 
-## Available Scripts
+# What it's for
+![Screenshot](TimestampStopwatch.png)
 
-In the project directory, you can run:
+I first wanted something like this when I was developing the
+step-by-step guidance functionality at Citymapper; I wanted to capture
+a bunch of annotated timestamps to compare with the logs of the
+automatic detection in the other app. At the time, I did find some iOS apps to do
+something similar, but the economics of software maintenance
+(and the procession of breaking OS changes over time) mean that
+the likelihood of that software staying working over time is low.
 
-### `yarn start`
+As I've been investigating decentralized computing and storage systems
+like [Arweave](https://www.arweave.org/), I've been curious about
+whether they could help provide a more durable platform for small
+apps like this one.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+So this is a small testbed for hosting a simple web app from Arweave,
+as well as a chance for me to experiment a bit with React.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Deployment
+To deploy to Arweave, we first build the React app into a single
+HTML file (including images) and launch it in the browser to sanity-check:
+```
+npm run build && npx gulp && google-chrome build/single/index.html
+```
 
-### `npm run build && npx gulp && google-chrome build/single/index.html`
+Then, assuming Arweave is set up already locally, we deploy:
+```
+arweave deploy build/single/index.html
+```
 
-This builds the app as a single HTML file and opens in Chrome.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Support
+As this is a quick learning project for me,
+I don't intend to spend time supporting or improving it except
+to try out additional ideas. Nonetheless, I'm happy if you find
+some use for it, and you're welcome to take the idea and/or code
+and run with it in any direction you want.
